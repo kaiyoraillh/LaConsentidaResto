@@ -135,11 +135,11 @@ ul {
 
 .logo img {
   height: 54px;
-  width: auto;
+  width: 200px;
   object-fit: contain;
+  object-position: left center;
   border-radius: 4px;
 }
-
 .nav-links {
   display: flex;
   gap: 36px;
