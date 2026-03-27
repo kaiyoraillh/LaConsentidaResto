@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Consentida | Restaurante en Ingeniero Maschwitz</title>
+  <meta name="description" content="Restaurante La Consentida en Mendoza 1624, Ingeniero Maschwitz. Cocina de autor, pastas, carnes, risottos y más. Reservas por WhatsApp.">
+  <meta name="keywords" content="restaurante La Consentida, Ingeniero Maschwitz, Maschwitz, cocina de autor, pastas, carnes, risottos, Buenos Aires">
+  <meta property="og:title" content="La Consentida | Restaurante en Ingeniero Maschwitz">
+  <meta property="og:description" content="Restaurante La Consentida en Mendoza 1624, Ingeniero Maschwitz. Cocina de autor, pastas, carnes, risottos y más.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_AR">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;0,900;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== VARIABLES ===== */
+    :root {
+      --cream: #FAF7F2;
+      --dark: #1A1A1A;
+      --gold: #C9A84C;
+      --green: #2D4A3E;
+      --white: #FFFFFF;
+      --ff-head: 'Bodoni Moda', serif;
+      --ff-body: 'Lato', sans-serif;
+      --tr: all 0.3s ease;
+      --shadow: 0 4px 20px rgba(0,0,0,0.07);
+      --shadow-h: 0 12px 40px rgba(0,0,0,0.14);
+    }
+
+    /* ===== RESET ===== */
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; font-size:16px; }
+    body { font-family:var(--ff-body); color:var(--dark); background:var(--cream); overflow-x:hidden; }
+    img { max-width:100%; height:auto; display:block; }
+    a { text-decoration:none; color:inherit; }
+    button { font-family:var(--ff-body); }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      position:fixed; top:0; left:0; right:0; z-index:1000;
+      padding:10px 2.5rem;
+      display:flex; align-items:center; justify-content:space-between;
+      background:var(--white);
+      box-shadow:0 1px 8px rgba(0,0,0,0.04);
+      border-bottom:1px solid var(--gold);
+    }
+    .navbar-logo img { height:70px; width:auto; object-fit:contain; display:block; }
+
+    .navbar-nav { display:flex; align-items:center; gap:0; list-style:none; }
+    .navbar-nav li { display:flex; align-items:center; }
+    .navbar-nav li + li::before {
+      content:''; display:inline-block;
+      width:1px; height:14px; background:var(--gold);
+      margin:0 2rem; opacity:0.6;
+    }
+    .navbar-nav a {
+      font-size:13px; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+      color:#1A1A1A; position:relative; padding-bottom:3px;
+      transition:color 0.3s ease;
+    }
+    .navbar-nav a::after {
+      content:''; position:absolute; bottom:0; left:0;
+      width:0; height:1px; background:var(--gold);
+      transition:width 0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+    .navbar-nav a:hover::after { width:100%; }
+    .navbar-nav a:hover { color:#C9A84C !important; }
+
+    .hamburger {
+      display:none; flex-direction:column; gap:5px;
+      cursor:pointer; background:none; border:none; padding:5px;
+    }
+    .hamburger span {
+      display:block; width:24px; height:2px;
+      background:var(--dark); transition:var(--tr);
+    }
+    .hamburger.active span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity:0; }
+    .hamburger.active span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      position:fixed; inset:0; z-index:999;
+      background:var(--green);
+      display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2.5rem;
+      opacity:0; visibility:hidden;
+      transition:opacity 0.35s ease, visibility 0.35s ease;
+    }
+    .mobile-menu.active { opacity:1; visibility:visible; }
+    .mobile-menu a {
+      font-family:var(--ff-head); font-size:2.2rem; color:var(--white);
+      letter-spacing:0.04em; transition:color 0.25s;
+    }
+    .mobile-menu a:hover { color:var(--gold); }
+
+    /* ===== HERO ===== */
+    .hero {
+      position:relative; height:100vh; min-height:620px;
+      display:flex; align-items:center; justify-content:center; overflow:hidden;
+      background:linear-gradient(150deg, #2D4A3E 0%, #1e3530 40%, #1A1A1A 100%);
+      padding-top:90px;
+    }
+    /* Noise + dot pattern */
+    .hero::before {
+      content:'';
+      position:absolute; inset:0; z-index:0; pointer-events:none;
+      background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E"),
+        radial-gradient(circle, rgba(201,168,76,0.05) 1px, transparent 1px);
+      background-size: 256px 256px, 36px 36px;
+    }
+    /* Vignette */
+    .hero::after {
+      content:'';
+      position:absolute; inset:0; z-index:1;
+      background:radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,0.5) 100%);
+      pointer-events:none;
+    }
+    /* Corner ornaments */
+    .hero-corner {
+      position:absolute; z-index:2; width:70px; height:70px; pointer-events:none;
+    }
+    .hero-corner--tl { top:6rem; left:2.5rem; }
+    .hero-corner--tr { top:6rem; right:2.5rem; transform:scaleX(-1); }
+    .hero-corner--bl { bottom:4rem; left:2.5rem; transform:scaleY(-1); }
+    .hero-corner--br { bottom:4rem; right:2.5rem; transform:scale(-1); }
+    .hero-corner svg { width:100%; height:100%; opacity:0.35; }
+
+    .hero-content {
+      position:relative; z-index:3; text-align:center; color:var(--white); padding:2rem;
+    }
+    .hero-logo {
+      max-width:380px; width:90%; margin:0 auto; display:block; margin-bottom:-60px;
+      filter:brightness(0) invert(1);
+      opacity:0; transform:scale(0.92) translateY(-12px);
+      transition:opacity 1s ease 0.2s, transform 1s cubic-bezier(0.22,1,0.36,1) 0.2s;
+    }
+    .hero-logo.loaded { opacity:1; transform:scale(1) translateY(0); }
+    .hero-sub {
+      font-size:15px; letter-spacing:4px;
+      text-transform:uppercase; color:var(--gold); margin:0.6rem 0 0;
+      opacity:0; transform:translateY(16px);
+      transition:opacity 0.9s ease 0.7s, transform 0.9s ease 0.7s;
+      display:flex; align-items:center; justify-content:center; gap:1.4rem;
+    }
+    .hero-sub::before, .hero-sub::after {
+      content:''; display:inline-block;
+      width:70px; height:1px; background:var(--gold); opacity:0.6;
+      flex-shrink:0;
+    }
+    .hero-sub.loaded { opacity:1; transform:translateY(0); }
+    .hero-cta {
+      display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-top:2.2rem;
+      opacity:0; transform:translateY(16px);
+      transition:opacity 0.9s ease 0.95s, transform 0.9s ease 0.95s;
+    }
+    .hero-cta.loaded { opacity:1; transform:translateY(0); }
+    .hero-note {
+      margin-top:1.2rem; font-size:0.72rem; letter-spacing:0.18em;
+      text-transform:uppercase; color:rgba(255,255,255,0.38);
+      opacity:0; transition:opacity 0.9s ease 1.2s;
+    }
+    .hero-note.loaded { opacity:1; }
+
+    .btn {
+      display:inline-flex; align-items:center; gap:0.5rem;
+      padding:1rem 2.4rem; font-size:0.72rem; font-weight:700;
+      letter-spacing:0.18em; text-transform:uppercase;
+      border-radius:2px; cursor:pointer; border:1.5px solid transparent;
+      transition:background 0.35s ease, color 0.35s ease, border-color 0.35s ease, transform 0.25s ease;
+    }
+    .btn:hover { transform:translateY(-2px); }
+    .btn-gold { background:var(--gold); color:#1A1A1A; border-color:var(--gold); border:none; }
+    .btn-gold:hover { background:#dbb84f; }
+    .btn-outline-w { background:rgba(255,255,255,0.08); color:var(--white); border-color:rgba(255,255,255,1); border-width:1.5px; }
+    .btn-outline-w:hover { background:var(--white); color:#2D4A3E; border-color:var(--white); }
+    .btn-wa { background:#25D366; color:var(--white); border-color:#25D366; }
+    .btn-wa:hover { background:transparent; color:#25D366; }
+
+    .hero-arrow {
+      position:absolute; bottom:2.2rem; left:50%; transform:translateX(-50%);
+      z-index:3; animation:arrowBounce 2.4s ease-in-out infinite;
+      display:flex; flex-direction:column; align-items:center; gap:4px;
+    }
+    .hero-arrow svg {
+      width:22px; height:22px; color:var(--gold); opacity:0.75;
+    }
+    @keyframes arrowBounce {
+      0%,100%{ transform:translateX(-50%) translateY(0); opacity:0.75; }
+      50%{ transform:translateX(-50%) translateY(9px); opacity:1; }
+    }
+
+    /* ===== GENERAL ===== */
+    section { padding:7rem 2rem; }
+    .container { max-width:1200px; margin:0 auto; }
+    .sec-label {
+      font-size:0.68rem; font-weight:700; letter-spacing:0.38em;
+      text-transform:uppercase; color:var(--gold); margin-bottom:0.8rem;
+    }
+    .sec-title {
+      font-family:var(--ff-head); font-size:clamp(2rem,4vw,3rem);
+      font-weight:400; line-height:1.2; letter-spacing:0.04em; margin-bottom:1.4rem;
+    }
+    .sec-div {
+      width:56px; height:1.5px; background:var(--gold); margin-bottom:2.5rem;
+      margin-left:auto; margin-right:auto;
+      position:relative;
+    }
+    .sec-div::after {
+      content:''; position:absolute; top:50%; left:calc(100% + 6px);
+      transform:translateY(-50%);
+      width:6px; height:6px; background:var(--gold); border-radius:50%;
+    }
+
+    .fade-up {
+      opacity:0; transform:translateY(32px);
+      transition:opacity 0.75s ease, transform 0.75s ease;
+    }
+    .fade-up.visible { opacity:1; transform:translateY(0); }
+    .d1{transition-delay:.1s} .d2{transition-delay:.2s}
+    .d3{transition-delay:.3s} .d4{transition-delay:.4s}
+
+    /* ===== NOSOTROS ===== */
+    .nosotros { background:var(--white); }
+    .nosotros-grid {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:5rem; align-items:center;
+    }
+    .nosotros-text p {
+      font-size:1rem; line-height:1.85; color:#5a5a5a; margin-bottom:1.4rem;
+    }
+    .info-grid {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:1.2rem; margin-top:2.5rem;
+    }
+    .info-card {
+      padding:1.4rem; border-left:3px solid var(--gold); background:var(--cream);
+    }
+    .info-card h4 {
+      font-size:0.68rem; font-weight:700; letter-spacing:0.22em;
+      text-transform:uppercase; color:var(--gold); margin-bottom:0.45rem;
+    }
+    .info-card p { font-size:0.88rem; line-height:1.65; color:var(--dark); }
+
+    .nosotros-img-wrap { position:relative; overflow:hidden; border-radius:2px; }
+    .nosotros-img-wrap img {
+      width:100%; height:560px; object-fit:cover;
+      transition:transform 0.6s ease;
+    }
+    .nosotros-img-wrap:hover img { transform:scale(1.04); }
+    .nosotros-img-wrap::before {
+      content:''; position:absolute;
+      top:-14px; right:-14px; width:55%; height:55%;
+      border:2px solid var(--gold); z-index:-1; border-radius:2px;
+    }
+
+    /* ===== MENU ===== */
+    .menu-sec { background:var(--cream); }
+    .menu-head { text-align:center; margin-bottom:3rem; }
+
+    .tabs-bar {
+      display:flex; flex-wrap:wrap; gap:0.45rem;
+      justify-content:center; margin-bottom:1.5rem;
+    }
+
+    .tab-btn {
+      padding:0.5rem 1.3rem;
+      font-size:0.68rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase;
+      color:#999; background:none; border:1.5px solid #e0dbd2; border-radius:50px;
+      cursor:pointer; transition:background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+    .tab-btn:hover { border-color:var(--gold); color:var(--gold); }
+    .tab-btn.active { background:var(--green); border-color:var(--green); color:var(--white); box-shadow:0 2px 12px rgba(45,74,62,0.3); }
+
+    .tab-panel { display:none; }
+    .tab-panel.active { display:block; }
+
+    .cards-grid {
+      display:grid; grid-template-columns:repeat(auto-fill,minmax(270px,1fr));
+      gap:1.4rem;
+    }
+    .menu-card {
+      background:#FFFFFF; padding:16px; border-radius:6px;
+      border:2px solid #2D4A3E;
+      box-shadow:0 2px 16px rgba(0,0,0,0.06);
+      display:flex; flex-direction:column;
+      transition:transform 0.35s ease, box-shadow 0.35s ease;
+    }
+    .menu-card:hover { transform:translateY(-5px); box-shadow:0 12px 32px rgba(0,0,0,0.12); }
+    .card-name {
+      font-family:var(--ff-head); font-size:15px; font-weight:500;
+      line-height:1.3; margin-bottom:0.4rem; color:#1A1A1A;
+      padding-bottom:0.4rem;
+      border-bottom:1px solid rgba(201,168,76,0.25);
+    }
+    .card-desc { font-size:13px; color:#7a7a7a; line-height:1.5; flex:1; margin-bottom:0.5rem; margin-top:0.25rem; }
+    .card-price { font-family:var(--ff-body); font-size:16px; font-weight:700; color:#C9A84C; }
+    .card-price.ask { font-family:var(--ff-body); font-size:0.78rem; font-style:italic; color:#bbb; font-weight:400; }
+
+    .sub-head {
+      font-family:var(--ff-head); font-size:1.25rem; font-weight:400; color:var(--green);
+      padding-bottom:0.5rem; border-bottom:1px solid #e5ddd0;
+      margin-bottom:1.5rem; margin-top:2.5rem;
+      display:flex; align-items:center; gap:0.75rem;
+    }
+    .sub-head:first-child { margin-top:0; }
+    .sub-head::before { content:''; width:28px; height:1px; background:var(--gold); flex-shrink:0; }
+
+    .sug-badge {
+      display:inline-block; background:var(--green); color:var(--white);
+      font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase;
+      padding:0.3rem 0.9rem; border-radius:2px; margin-bottom:2rem;
+    }
+
+    .wine-sections { display:flex; flex-direction:column; gap:2.5rem; }
+    .wine-grid {
+      display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+      gap:0.6rem;
+    }
+    .wine-row {
+      display:flex; justify-content:space-between; align-items:baseline; gap:1rem;
+      padding:0.75rem 1rem; background:var(--white); border-radius:6px;
+      border:2px solid #2D4A3E;
+      transition:background 0.2s;
+    }
+    .wine-row:hover { background:#f0ece3; }
+    .wine-name { font-family:var(--ff-head); font-size:0.9rem; flex:1; }
+    .wine-price { font-size:0.82rem; font-weight:700; color:var(--gold); white-space:nowrap; }
+
+    .copa-badge {
+      display:inline-block; background:var(--green); color:var(--white);
+      font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase;
+      padding:0.35rem 1rem; border-radius:2px; margin-bottom:1.2rem;
+    }
+
+    .cock-grid {
+      display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+      gap:1rem;
+    }
+    .cock-card {
+      background:var(--white); padding:1.1rem 1.2rem; border-radius:6px;
+      border:2px solid #2D4A3E;
+      box-shadow:none; display:flex; justify-content:space-between;
+      align-items:flex-start; gap:1rem;
+      transition:transform 0.25s, box-shadow 0.25s;
+    }
+    .cock-card:hover { transform:translateY(-3px); box-shadow:var(--shadow-h); }
+    .cock-name { font-family:var(--ff-head); font-size:0.98rem; font-weight:500; margin-bottom:0.25rem; }
+    .cock-desc { font-size:0.78rem; color:#888; line-height:1.45; }
+    .cock-price { font-family:var(--ff-head); font-size:1rem; font-weight:600; color:var(--gold); white-space:nowrap; }
+
+    .cafe-grid {
+      display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
+      gap:0.6rem;
+    }
+    .cafe-row {
+      display:flex; justify-content:space-between; align-items:center; gap:0.5rem;
+      padding:0.8rem 1rem; background:var(--white); border-radius:6px;
+      border:2px solid #2D4A3E; transition:background 0.2s;
+    }
+    .cafe-row:hover { background:#f0ece3; }
+    .cafe-name { font-size:0.88rem; }
+    .cafe-price { font-size:0.82rem; font-weight:700; color:var(--gold); white-space:nowrap; }
+
+    .adicionales {
+      grid-column:1/-1; padding:1.2rem 1.5rem;
+      background:#f5efe6; border-left:3px solid var(--gold); border-radius:2px;
+    }
+    .adicionales h4 {
+      font-size:0.7rem; font-weight:700; letter-spacing:0.18em;
+      text-transform:uppercase; color:var(--gold); margin-bottom:0.4rem;
+    }
+    .adicionales p { font-size:0.84rem; color:#666; }
+
+    .kids-wrap { display:flex; justify-content:center; margin-top:2.5rem; }
+    .kids-card {
+      background:linear-gradient(135deg,var(--green),#3d6152);
+      color:var(--white); padding:2rem 2.5rem; border-radius:2px;
+      text-align:center; max-width:380px; width:100%;
+    }
+    .kids-card h3 { font-family:var(--ff-head); font-size:1.5rem; margin-bottom:0.5rem; }
+    .kids-card p { font-size:0.88rem; opacity:0.85; line-height:1.65; margin-bottom:0.75rem; }
+    .kids-card .kprice { font-family:var(--ff-head); font-size:1.6rem; color:var(--gold); font-weight:600; }
+
+    .menu-note {
+      text-align:center; padding:2rem; margin-top:2.5rem;
+      border-top:1px solid #e5ddd0;
+      font-size:0.84rem; color:#999; font-style:italic;
+    }
+    .ham-note {
+      display:inline-block; background:#f5efe6; border-left:3px solid var(--gold);
+      padding:0.6rem 1rem; font-size:0.82rem; color:#666; margin-bottom:1.5rem; border-radius:2px;
+    }
+
+    /* ===== GALLERY ===== */
+    .gallery-sec { background:var(--white); }
+    .gallery-head { text-align:center; margin-bottom:3rem; }
+    .gallery-grid {
+      display:grid; grid-template-columns:repeat(3,1fr); gap:12px;
+    }
+    .g-item {
+      position:relative; overflow:hidden; cursor:pointer;
+      border-radius:8px; background:#ccc;
+      height:250px;
+    }
+    .g-item img {
+      width:100%; height:100%; object-fit:cover; display:block;
+      transition:transform 0.5s ease;
+    }
+    .g-item:hover img { transform:scale(1.07); }
+    .g-overlay {
+      position:absolute; inset:0;
+      background:rgba(0,0,0,0);
+      display:flex; align-items:center; justify-content:center;
+      transition:background 0.35s ease;
+      border-radius:8px;
+    }
+    .g-item:hover .g-overlay { background:rgba(0,0,0,0.38); }
+    .g-overlay svg {
+      width:42px; height:42px; color:var(--white);
+      opacity:0; transform:scale(0.7); transition:opacity 0.3s ease, transform 0.3s ease;
+    }
+    .g-item:hover .g-overlay svg { opacity:1; transform:scale(1); }
+
+    .lightbox {
+      position:fixed; inset:0; z-index:2000;
+      background:rgba(0,0,0,.95);
+      display:flex; align-items:center; justify-content:center;
+      opacity:0; visibility:hidden; transition:opacity 0.3s, visibility 0.3s;
+    }
+    .lightbox.active { opacity:1; visibility:visible; }
+    .lightbox img {
+      max-width:90vw; max-height:88vh; object-fit:contain; border-radius:2px;
+    }
+    .lb-close, .lb-prev, .lb-next {
+      position:absolute; background:rgba(255,255,255,0.1);
+      border:none; color:var(--white); cursor:pointer;
+      border-radius:50%; display:flex; align-items:center; justify-content:center;
+      transition:background 0.2s; line-height:1;
+    }
+    .lb-close { top:1.5rem; right:1.5rem; width:44px; height:44px; font-size:1.5rem; }
+    .lb-prev, .lb-next { top:50%; transform:translateY(-50%); width:50px; height:50px; font-size:1.6rem; }
+    .lb-prev { left:1.2rem; }
+    .lb-next { right:1.2rem; }
+    .lb-close:hover, .lb-prev:hover, .lb-next:hover { background:rgba(255,255,255,0.2); }
+
+    /* ===== CONTACT ===== */
+    .contact-sec {
+      background:#2D4A3E; color:var(--white);
+      padding:5rem 2rem;
+    }
+    .contact-sec .sec-label { color:var(--gold); }
+    .contact-sec .sec-title { color:var(--white); }
+    .contact-sec .sec-div { background:var(--gold); }
+    .contact-inner { max-width:1100px; margin:0 auto; }
+    .contact-cols {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:2.5rem; align-items:stretch; margin-top:3rem;
+    }
+    .contact-cards {
+      display:flex; flex-direction:column; gap:1rem;
+    }
+    .c-card {
+      background:rgba(255,255,255,0.07); border-radius:10px;
+      padding:1.6rem 1.8rem; display:flex; flex-direction:column;
+      align-items:flex-start; gap:0.55rem;
+      border:1px solid rgba(255,255,255,0.08);
+    }
+    .c-card .c-icon {
+      width:28px; height:28px; color:var(--gold); flex-shrink:0;
+    }
+    .c-card h4 {
+      font-size:0.62rem; font-weight:700; letter-spacing:0.22em;
+      text-transform:uppercase; color:var(--gold); margin:0;
+    }
+    .c-card p {
+      font-size:0.9rem; line-height:1.65;
+      color:rgba(255,255,255,0.85); margin:0;
+    }
+    .contact-map-wrap {
+      border-radius:10px; overflow:hidden;
+      border:1.5px solid rgba(201,168,76,0.4);
+      min-height:340px; position:relative;
+    }
+    .contact-map-wrap iframe {
+      position:absolute; top:0; left:0;
+      width:100%; height:100%; border:none; display:block;
+    }
+    .contact-actions {
+      display:flex; gap:0.9rem; margin-top:2.5rem;
+      justify-content:center; flex-wrap:wrap;
+    }
+    .btn-insta {
+      display:inline-flex; align-items:center; gap:0.55rem;
+      padding:0.75rem 1.6rem; border:1.5px solid rgba(255,255,255,0.75);
+      border-radius:3px; font-size:0.75rem; font-weight:700;
+      letter-spacing:0.12em; text-transform:uppercase; color:var(--white);
+      transition:var(--tr);
+    }
+    .btn-insta:hover { background:var(--white); color:#2D4A3E; border-color:var(--white); }
+    .btn-insta svg { width:16px; height:16px; }
+    .btn-wa-contact {
+      display:inline-flex; align-items:center; gap:0.55rem;
+      padding:0.75rem 1.6rem; background:var(--gold); border:1.5px solid var(--gold);
+      border-radius:3px; font-size:0.75rem; font-weight:700;
+      letter-spacing:0.12em; text-transform:uppercase; color:#1A1A1A;
+      transition:var(--tr);
+    }
+    .btn-wa-contact:hover { background:#dbb84f; border-color:#dbb84f; }
+    .btn-wa-contact svg { width:16px; height:16px; }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background:#2D4A3E; padding:1.8rem 2rem;
+      text-align:center;
+    }
+    .footer-copy { font-size:0.75rem; color:rgba(255,255,255,0.38); letter-spacing:0.12em; }
+
+    /* ===== WHATSAPP FLOAT ===== */
+    .wa-float {
+      position:fixed; bottom:2rem; right:2rem; z-index:998;
+      width:58px; height:58px; border-radius:50%;
+      background:#25D366;
+      display:flex; align-items:center; justify-content:center;
+      box-shadow:0 4px 20px rgba(37,211,102,0.45);
+      transition:transform 0.3s, box-shadow 0.3s;
+    }
+    .wa-float:hover { transform:scale(1.12); box-shadow:0 6px 32px rgba(37,211,102,0.55); }
+    .wa-float svg { width:30px; height:30px; color:var(--white); }
+    .wa-float::before {
+      content:''; position:absolute; width:100%; height:100%;
+      border-radius:50%; background:#25D366;
+      animation:waPulse 2.2s infinite; z-index:-1;
+    }
+    @keyframes waPulse {
+      0%{ transform:scale(1); opacity:0.6; }
+      100%{ transform:scale(1.7); opacity:0; }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media(max-width:960px){
+      .nosotros-grid { grid-template-columns:1fr; gap:3rem; }
+      .nosotros-img-wrap { order:-1; }
+      .nosotros-img-wrap img { height:360px; }
+      .nosotros-img-wrap::before { display:none; }
+      .contact-cols { grid-template-columns:1fr; }
+      .contact-map-wrap { min-height:300px; }
+      .footer-inner { grid-template-columns:1fr 1fr; gap:2.5rem; }
+      .gallery-grid { grid-template-columns:repeat(2,1fr); }
+    }
+    @media(max-width:768px){
+      .navbar-nav { display:none; }
+      .hamburger { display:flex; }
+      section { padding:4.5rem 1.25rem; }
+      .info-grid { grid-template-columns:1fr; }
+      .cards-grid { grid-template-columns:1fr; }
+      .wine-grid { grid-template-columns:1fr; }
+      .cock-grid { grid-template-columns:1fr; }
+      .cafe-grid { grid-template-columns:1fr; }
+      .footer-inner { grid-template-columns:1fr; gap:2rem; }
+    }
+    @media(max-width:480px){
+      .gallery-grid { grid-template-columns:1fr; }
+      .hero-cta { flex-direction:column; align-items:center; }
+      .btn { width:100%; max-width:300px; justify-content:center; }
+      .footer-bot { flex-direction:column; text-align:center; }
+      .contact-actions { flex-direction:column; align-items:center; }
+      .contact-actions .btn-insta,
+      .contact-actions .btn-wa-contact { width:100%; max-width:300px; justify-content:center; }
+      .lb-prev { left:0.5rem; }
+      .lb-next { right:0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Navegación principal">
+    <a href="#inicio" class="navbar-logo" aria-label="La Consentida — Inicio">
+      <img src="assets/LA%20CONSENTIDA%20IMAGENES/LOGO%20LA%20CONSENTIDA.jpg" alt="La Consentida" style="height:90px;width:auto;object-fit:contain;margin:-10px 0;">
+    </a>
+    <ul class="navbar-nav" role="list">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#menu">Menú</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger"
+            aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Menú móvil">
+    <a href="#inicio" onclick="closeMob()">Inicio</a>
+    <a href="#menu" onclick="closeMob()">Menú</a>
+    <a href="#contacto" onclick="closeMob()">Contacto</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio" aria-label="Portada">
+    <div class="hero-content">
+      <img class="hero-logo" id="heroLogo"
+           src="assets/LA%20CONSENTIDA%20IMAGENES/LOGO%20LA%20CONSENTIDA%20PNG.png"
+           alt="La Consentida">
+      <p class="hero-sub" id="heroSub">Mendoza 1624, Ingeniero Maschwitz</p>
+      <div class="hero-cta" id="heroCta">
+        <a href="#menu" class="btn btn-gold">Ver Menú</a>
+        <a href="https://wa.me/541128798718?text=Hola!%20Quiero%20reservar%20mi%20mesa." class="btn btn-outline-w"
+           target="_blank" rel="noopener noreferrer">Reservar por WhatsApp</a>
+      </div>
+    </div>
+    <div class="hero-arrow" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section class="menu-sec" id="menu" aria-labelledby="menuTitle">
+    <div class="container">
+      <div class="menu-head fade-up">
+        <p class="sec-label">Nuestra Carta</p>
+        <h2 class="sec-title" id="menuTitle">El Menú</h2>
+        <div class="sec-div center"></div>
+      </div>
+      <div class="tabs-bar fade-up d1" role="tablist" aria-label="Categorías del menú" id="tabsBar"></div>
+      <div id="tabPanels"></div>
+    </div>
+  </section>
+
+  <!-- MENU SIN TACC -->
+  <section class="menu-sec" id="menu-tacc" aria-labelledby="taccTitle" style="background:#f7f4ef;">
+    <div class="container">
+      <div class="menu-head fade-up">
+        <p class="sec-label">MENÚ</p>
+        <h2 class="sec-title" id="taccTitle" style="display:flex;align-items:center;justify-content:center;gap:0.7rem;">
+          Sin TACC
+          <img src="assets/LA%20CONSENTIDA%20IMAGENES/SIN%20TACC%20IMG.png" alt="Sin TACC" width="28" height="28" style="flex-shrink:0;object-fit:contain;">
+        </h2>
+        <div class="sec-div"></div>
+      </div>
+      <div class="tabs-bar fade-up d1" role="tablist" aria-label="Categorías sin TACC" id="taccTabsBar"></div>
+      <div id="taccPanels"></div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery-sec" id="galeria" aria-labelledby="galeriaTitle">
+    <div class="container">
+      <div class="gallery-head fade-up">
+        <p class="sec-label">Galería</p>
+        <h2 class="sec-title" id="galeriaTitle">Momentos en La Consentida</h2>
+        <div class="sec-div center"></div>
+      </div>
+      <div class="gallery-grid fade-up d1">
+        <div class="g-item" data-img="assets/LA%20CONSENTIDA%20IMAGENES/CENA.jpg" tabindex="0" role="button" aria-label="Ver foto: Ambiente del restaurante">
+          <img src="assets/LA%20CONSENTIDA%20IMAGENES/CENA.jpg" alt="Ambiente del restaurante La Consentida" loading="lazy">
+          <div class="g-overlay" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+          </div>
+        </div>
+        <div class="g-item" data-img="assets/LA%20CONSENTIDA%20IMAGENES/HAMBURGUESA.jpg" tabindex="0" role="button" aria-label="Ver foto: Hamburguesa">
+          <img src="assets/LA%20CONSENTIDA%20IMAGENES/HAMBURGUESA.jpg" alt="Hamburguesa artesanal de La Consentida" loading="lazy">
+          <div class="g-overlay" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+          </div>
+        </div>
+        <div class="g-item" data-img="assets/LA%20CONSENTIDA%20IMAGENES/RABAS.jpg" tabindex="0" role="button" aria-label="Ver foto: Rabas">
+          <img src="assets/LA%20CONSENTIDA%20IMAGENES/RABAS.jpg" alt="Rabas con alioli de La Consentida" loading="lazy">
+          <div class="g-overlay" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+          </div>
+        </div>
+        <div class="g-item" data-img="assets/LA%20CONSENTIDA%20IMAGENES/TOSTADA%20MERIENDA.jpg" tabindex="0" role="button" aria-label="Ver foto: Tostada merienda">
+          <img src="assets/LA%20CONSENTIDA%20IMAGENES/TOSTADA%20MERIENDA.jpg" alt="Tostada merienda de La Consentida" loading="lazy">
+          <div class="g-overlay" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+          </div>
+        </div>
+        <div class="g-item" data-img="assets/LA%20CONSENTIDA%20IMAGENES/FOTO%20A%20VOLCAN%20DE%20CHOCOLATE%20DULCE.jpg" tabindex="0" role="button" aria-label="Ver foto: Volcán de chocolate">
+          <img src="assets/LA%20CONSENTIDA%20IMAGENES/FOTO%20A%20VOLCAN%20DE%20CHOCOLATE%20DULCE.jpg" alt="Volcán de chocolate de La Consentida" loading="lazy">
+          <div class="g-overlay" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+          </div>
+        </div>
+        <div class="g-item" data-img="assets/LA%20CONSENTIDA%20IMAGENES/laconsentidaresto_1756420208_3709444016254711115_6341983576_2.jpg" tabindex="0" role="button" aria-label="Ver foto: La Consentida">
+          <img src="assets/LA%20CONSENTIDA%20IMAGENES/laconsentidaresto_1756420208_3709444016254711115_6341983576_2.jpg" alt="La Consentida" loading="lazy">
+          <div class="g-overlay" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-label="Imagen ampliada" aria-modal="true">
+    <button class="lb-close" id="lbClose" aria-label="Cerrar">&#x2715;</button>
+    <button class="lb-prev" id="lbPrev" aria-label="Imagen anterior">&#x2039;</button>
+    <img id="lbImg" src="" alt="">
+    <button class="lb-next" id="lbNext" aria-label="Imagen siguiente">&#x203A;</button>
+  </div>
+
+  <!-- CONTACT -->
+  <section class="contact-sec" id="contacto" aria-labelledby="contactTitle">
+    <div class="contact-inner">
+      <div class="menu-head fade-up">
+        <p class="sec-label">ENCONTRANOS</p>
+        <h2 class="sec-title" id="contactTitle">Contacto</h2>
+        <div class="sec-div center"></div>
+      </div>
+      <div class="contact-cols">
+        <!-- Cards izquierda -->
+        <div class="contact-cards">
+          <div class="c-card fade-up">
+            <svg class="c-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            <h4>Dirección</h4>
+            <p>Mendoza 1624, Ingeniero Maschwitz<br>Buenos Aires, Argentina</p>
+          </div>
+          <div class="c-card fade-up d1">
+            <svg class="c-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <h4>Horarios</h4>
+            <p>Lunes a Viernes: 8:00 — 1:00 hs<br>Sábado y Domingo: 9:00 — 1:00 hs</p>
+          </div>
+          <div class="c-card fade-up d2">
+            <svg class="c-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 10.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.16 6.16l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            <h4>Telefono</h4>
+            <p>+54 11 2879-8718</p>
+          </div>
+        </div>
+        <!-- Mapa derecha -->
+        <div class="contact-map-wrap fade-up d1">
+          <iframe
+            src="https://www.google.com/maps?q=Mendoza+1624,+Ingeniero+Maschwitz,+Buenos+Aires,+Argentina&output=embed"
+            title="Ubicación de La Consentida en Google Maps"
+            style="border:0" scrolling="no"
+            allowfullscreen loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+      <!-- Botones -->
+      <div class="contact-actions fade-up d2">
+        <a href="https://www.instagram.com/laconsentidaresto/" target="_blank" rel="noopener noreferrer"
+           class="btn-insta" aria-label="Instagram de La Consentida">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+          @laconsentidaresto
+        </a>
+        <a href="https://wa.me/541128798718?text=Hola!%20Quiero%20reservar%20mi%20mesa." class="btn-wa-contact"
+           target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L.057 23.857a.5.5 0 00.608.608l6.001-1.475A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.814 9.814 0 01-5.001-1.366l-.359-.213-3.712.912.926-3.604-.234-.371A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>
+          Reservar por WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <p class="footer-copy">© 2026 La Consentida. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- WHATSAPP FLOAT -->
+  <a href="https://wa.me/541128798718" class="wa-float"
+     target="_blank" rel="noopener noreferrer"
+     aria-label="Contactar por WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+      <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L.057 23.857a.5.5 0 00.608.608l6.001-1.475A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.814 9.814 0 01-5.001-1.366l-.359-.213-3.712.912.926-3.604-.234-.371A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/>
+    </svg>
+  </a>
+
+  <script>
+  /* ============================================================
+     MENU DATA
+  ============================================================ */
+  const MENU = {
+    entradas: {
+      label: 'Entradas',
+      type: 'cards',
+      items: [
+        { name: 'Bastones de Muzzarella', desc: 'Salsa fileto y pesto de albahaca', price: '$12.000' },
+        { name: 'Empanadas', desc: 'Carne / Queso azul y verdeo / Jamón y queso', price: '$3.800 c/u' },
+        { name: 'Rabas', desc: 'Con salsa alioli', price: '$22.600' },
+        { name: 'Portobellos Gratinados', desc: 'Cuatro quesos: azul, muzzarella, reggianito y parmesano', price: '$18.600' },
+        { name: 'Langostinos Rebozados', desc: 'En coco, mix de verdes, salsas maracuyá y tomate picante', price: '$25.600' },
+        { name: 'Burratina', desc: 'Jamón crudo, rúcula, palta, cherrys confitados y parmesano', price: '$24.300' }
+      ]
+    },
+    ensaladas: {
+      label: 'Ensaladas',
+      type: 'cards',
+      items: [
+        { name: 'Salmon Gravlax', desc: 'Mix de verdes, flor de salmón ahumado, perlas de mozzarella y cherrys', price: '$23.100' },
+        { name: 'Caesar de Pollo', desc: 'Lechuga, pollo, aderezo César, anchoa, croutones y parmesano. Opcional +camarones $5.000', price: '$19.600' },
+        { name: 'Consentida', desc: 'Burratina, mix de verdes, palta, cherrys confitados, semillas y almendras', price: '$22.700' },
+        { name: 'De Mar', desc: 'Rúcula, espinaca, palta, cherrys, camarones rebozados y mix de semillas', price: '$25.400' }
+      ]
+    },
+    pastas: {
+      label: 'Pastas',
+      type: 'cards',
+      items: [
+        { name: 'Sorrentinos de Jamón y Queso Parisienne Gratinados', desc: 'Champiñón, pollo, jamón cocido y crema', price: '$26.000' },
+        { name: 'Raviolones Negros de Salmón con Salsa Mar y Monte', desc: 'Verdeo, ajo, champiñones, camarones, crema y fileto', price: '$28.000' },
+        { name: 'Fusilli al Fierrito Scarparo', desc: 'Ajo, verdeo, tomates secos, cherrys, fileto y pesto', price: '$23.100' },
+        { name: 'Ravioles de Verdura y Ricota', desc: 'Con estofado de ternera', price: '$24.900' },
+        { name: 'Spaghettis Boloñesa', desc: 'Salsa boloñesa artesanal', price: '$24.600' },
+        { name: 'Gnocchis Crema de Hongos', desc: 'Crema, hongos de pino y champiñones', price: '$24.800' },
+        { name: 'Penne Neri', desc: 'Crema, cherrys, salmón ahumado y camarones', price: '$25.700' },
+        { name: 'Ravioles de Calabaza en Masa de Remolacha a la Crema', desc: 'Gratinados con queso ahumado', price: '$25.500' }
+      ]
+    },
+    risottos: {
+      label: 'Risottos',
+      type: 'cards',
+      items: [
+        { name: 'Risotto Ossobuco', desc: 'Risotto milanés, cebolla, ajo, verdeo, morrones, arroz azafranado, ossobuco al pomodoro, sardo y manteca', price: '$28.600' },
+        { name: 'Risotto de Hongos y Queso Azul', desc: 'Cebolla, verdeo, champiñones, hongos de pino, queso azul, sardo y manteca', price: '$28.600' },
+        { name: 'Risotto Corazón de Alcaucil Gratinado', desc: 'Cebolla, verdeo, tomates cherry, sardo y manteca', price: '$28.600' },
+        { name: 'Risotto de Mariscos', desc: 'Arroz azafranado, cebolla, morrones, verdeo y frutos de mar', price: '$31.600' }
+      ]
+    },
+    pescados: {
+      label: 'Pescados',
+      type: 'cards',
+      items: [
+        { name: 'Pesca del Día', desc: 'Rotolo de merluza con timbal tricolor', price: '$30.300' },
+        { name: 'Salmón con Mix de Semillas', desc: 'Vegetales en teriyaki. Opcional +camarones rebozados $5.000', price: '$40.800' }
+      ]
+    },
+    carnes: {
+      label: 'Carnes',
+      type: 'carnes',
+      items: [
+        { name: 'Ojo de Bife (450gr)', desc: 'Manteca de hierbas y papas rústicas al pimentón ahumado', price: '$41.400' },
+        { name: 'Lomo Cuatro Quesos', desc: 'Sardo, reggianito, azul, muzzarella y crema. Puré rústico con hongos y verdeo', price: '$39.400' },
+        { name: 'Bondiola Laqueada con Mostaza y Miel', desc: 'Batatas rústicas', price: '$36.900' },
+        { name: 'Pamplona de Pollo', desc: 'Papas rústicas salteadas con portuguesa', price: '$37.100' },
+        { name: 'Entraña Rellena', desc: 'Provolone y panceta, con papas fritas', price: '$44.100' },
+        { name: 'Milanesa de Ternera para 2', desc: 'Con papas fritas', price: '$59.300' },
+        { name: 'Milanesa de Suprema para 2', desc: 'Con papas fritas', price: '$53.000' }
+      ],
+      adicionales: 'Napolitana $6.300 &nbsp;·&nbsp; Fugazzeta $6.300 &nbsp;·&nbsp; Rúcula y jamón crudo $8.200 &nbsp;·&nbsp; Spaghetti con manteca $10.400'
+    },
+    hamburguesas: {
+      label: 'Hamburguesas',
+      type: 'cards',
+      note: 'Todas incluyen papas fritas',
+      items: [
+        { name: 'Bife de Chorizo', desc: 'Bacón, pepinillos, salsa cheddar y verdeo', price: '$24.700' },
+        { name: 'Salmón y Camarones', desc: 'Queso crema, tomates secos y rúcula', price: '$31.300' },
+        { name: 'Lentejas, Zanahoria y Quinoa', desc: 'Tomate, lechuga, muzzarella y cebolla morada', price: '$21.300' }
+      ]
+    },
+    postres: {
+      label: 'Postres',
+      type: 'postres',
+      items: [
+        { name: 'Flan para 2', desc: 'Flan casero para compartir', price: '$9.700' },
+        { name: 'Brownie Cheesecake', desc: 'Con helado, nuez acaramelada y salsa de chocolate', price: '$10.300' },
+        { name: 'Crème Brûlée', desc: 'Clásico postre francés', price: '$9.400' },
+        { name: 'Bocha de Helado', desc: '2 bochas a elección', price: '$9.000' },
+        { name: 'Tiramisú Clásico', desc: 'Elaboración artesanal', price: '$9.700' },
+        { name: 'Volcán de Chocolate', desc: 'Con helado de americana', price: '$12.000' },
+        { name: 'Nuestras Tortas', desc: 'Elaboración artesanal — consultar sabores del día', price: '$10.900' }
+      ]
+    },
+    cafeteria: {
+      label: 'Cafetería',
+      type: 'cafeteria',
+      sections: [
+        { title: 'Bebidas Calientes', items: [
+          { name: 'Café', price: '$3.400' },
+          { name: 'Café Cortado', price: '$3.600' },
+          { name: 'Café con Crema', price: '$3.700' },
+          { name: 'Jarrito Americano', price: '$3.700' },
+          { name: 'Jarrito con Leche', price: '$4.100' },
+          { name: 'Jarrito con Crema', price: '$4.200' },
+          { name: 'Café Doble', price: '$4.400' },
+          { name: 'Café Doble con Leche', price: '$4.800' },
+          { name: 'Café Doble con Crema', price: '$4.900' },
+          { name: 'Tazón de Café con Leche', price: '$7.700' },
+          { name: 'Cappuccino', price: '$5.700' },
+          { name: 'Submarino', price: '$5.300' },
+          { name: 'Chocolatada', price: '$5.200' },
+          { name: 'Vaso de Leche', price: '$4.900' },
+          { name: 'Té Intizen Clásico', price: '$3.900' },
+          { name: 'Té con Leche', price: '$4.200' },
+          { name: 'Tés Especiales', price: '$4.400' }
+        ]},
+        { title: 'Dulce', items: [
+          { name: 'Medialuna', price: '$1.700' },
+          { name: 'Medialuna con Jamón y Queso', price: '$3.100' },
+          { name: 'Croissant', price: '$5.100' },
+          { name: 'Croissant con Jamón y Queso', price: '$9.000' },
+          { name: 'Cuadrado Dulce (Brownie / Membrillo / Coco y DDL / Manzana)', price: '$5.600' },
+          { name: 'Tostada Pan de Campo — Queso Crema y Mermelada / DDL', price: '$7.900' },
+          { name: 'Tostada Pan Integral Multicereal — Queso Crema y Mermelada / DDL', price: '$7.800' },
+          { name: 'Budín Individual (Limón y Amapolas / Naranja / Banana)', price: '$4.900' },
+          { name: 'Muffin (Choc. Blanco con Arándanos / Banana con Almendras)', price: '$4.700' },
+          { name: 'Cookies (Vainilla / Chocolate)', price: '$3.600' },
+          { name: 'Alfajor de Maicena', price: '$4.400' },
+          { name: 'Tortas Individuales (consultar)', price: '$10.900' }
+        ]},
+        { title: 'Salado', items: [
+          { name: 'Scon de Queso', price: '$3.100' },
+          { name: 'Tostado Pan Árabe — Jamón y Queso', price: '$8.500' },
+          { name: 'Tostado Pan Árabe — Jamón Crudo y Queso', price: '$10.200' },
+          { name: 'Panini Jamón y Queso', price: '$10.100' },
+          { name: 'Panini Jamón Crudo y Queso', price: '$11.200' },
+          { name: 'Panini Salmón con Queso Crema y Ciboulette', price: '$18.500' },
+          { name: 'Tostón con Huevo Revuelto', price: '$9.700' },
+          { name: 'Tostón de Jamón Crudo, Rúcula y Palta', price: '$12.700' }
+        ]},
+        { title: 'Licuados y Milk Shake', items: [
+          { name: 'Licuado (Banana / Durazno / Ananá / Frutilla / Frutos Rojos)', price: '$8.800' },
+          { name: 'Milk Shake (Chocolate / Frutilla / Dulce de Leche)', price: '$10.800' }
+        ]}
+      ]
+    },
+    bebidas: {
+      label: 'Bebidas',
+      type: 'bebidas',
+      sections: [
+        { title: 'Sin Alcohol', style: 'cafe', items: [
+          { name: 'Gaseosa', price: '$3.800' },
+          { name: 'Agua Saborizada', price: '$3.800' },
+          { name: 'Agua sin Gas', price: '$3.800' },
+          { name: 'Agua con Gas', price: '$3.800' },
+          { name: 'Limonada 500cc', price: '$7.100' },
+          { name: 'Limonada 1 Lt', price: '$11.100' },
+          { name: 'Jugo de Naranja', price: '$7.200' }
+        ]},
+        { title: 'Cervezas', style: 'cafe', items: [
+          { name: 'Imperial Chopp de Litro', price: '$10.800' },
+          { name: 'Especialidades Chopp de Litro', price: '$11.400' },
+          { name: 'Imperial Pinta 500cc', price: '$7.200' },
+          { name: 'Especialidades Pinta 500cc', price: '$7.500' },
+          { name: 'Miller Lata 470cc', price: '$5.000' },
+          { name: 'Heineken Porrón 330cc', price: '$5.100' }
+        ]},
+        { title: 'Whiskys', style: 'cafe', items: [
+          { name: 'Johnnie Walker Red Label', price: '$14.000' },
+          { name: 'Johnnie Walker Black Label', price: '$19.500' },
+          { name: 'Jack Daniels', price: '$16.000' },
+          { name: 'Baileys Irish Cream', price: '$10.500' }
+        ]},
+        { title: 'Cócteles Clásicos', style: 'cocktail', items: [
+          { name: 'Gin Tonic', desc: 'Gin, limón, agua tónica', price: '$8.200' },
+          { name: 'Campari', desc: 'Campari, jugo de naranja', price: '$8.200' },
+          { name: 'Cuba Libre', desc: 'Ron Havana 3 años, coca cola, limón', price: '$8.600' },
+          { name: 'Daiquiri Frutal', desc: 'Ron, azúcar, pulpa de fruta, jugo de limón', price: '$8.600' },
+          { name: 'Caipirinha', desc: 'Cachaça, lima, azúcar', price: '$8.600' },
+          { name: 'Caipiroska', desc: 'Vodka, lima, azúcar', price: '$8.600' },
+          { name: 'Margarita', desc: 'Tequila, hesperidina, limón, azúcar', price: '$9.000' },
+          { name: 'Fernet Cola', desc: 'Fernet Branca, coca cola', price: '$9.000' },
+          { name: 'Negroni', desc: 'Gin, campari, vermouth Cinzano rosso', price: '$9.000' },
+          { name: 'Aperol Spritz', desc: 'Aperol, champagne, agua con gas', price: '$9.000' },
+          { name: 'Pisco Sour', desc: 'Pisco, clara de huevo, limón, azúcar', price: '$8.600' },
+          { name: 'Mojito', desc: 'Ron Havana 3 años, lima, menta, agua tónica', price: '$8.600' },
+          { name: 'Manhattan', desc: 'Bitter, whisky, vermouth rosso', price: '$8.600' },
+          { name: 'Pornstar Martini', desc: 'Vodka vainilla, maracuyá, jugo de lima', price: '$8.600' }
+        ]},
+        { title: 'Nuestras Creaciones', style: 'cocktail', items: [
+          { name: 'Caipi Consentida', desc: 'Vodka, lima, pomelo rosado, maracuyá', price: '$9.000' },
+          { name: 'White Shake', desc: 'Baileys, vodka, Lic. Chocolate, leche condensada, helado vainilla', price: '$9.000' },
+          { name: 'Gancia Sour', desc: 'Gancia, jugo de limón, azúcar, clara de huevo', price: '$9.000' },
+          { name: 'Board Burgundy', desc: 'Vino tinto, frutos rojos, jugo de naranja', price: '$9.000' },
+          { name: 'Evening', desc: 'Hesperidina, fernet, agua tónica', price: '$9.000' },
+          { name: 'Red Bell', desc: 'Vodka, Lic. Frutilla, frutos rojos, agua tónica', price: '$9.000' },
+          { name: 'Grapisky', desc: 'Pisco, whisky, jugo de pomelo', price: '$9.000' },
+          { name: 'Dulce Blanco', desc: 'Ron, Lic. Chocolate blanco, Lic. Frutilla', price: '$9.000' },
+          { name: 'Camaretto', desc: 'Lic. Amaretto, café negro, crema, canela', price: '$9.000' },
+          { name: 'Atardecer', desc: 'Jugo de lima, syrup, aperol, gin, maracuyá', price: '$9.000' },
+          { name: 'Jager', desc: 'Jugo de lima, menta, syrup, cynar, jager', price: '$9.000' },
+          { name: 'Pasión', desc: 'Jugo de limón, frutos rojos, syrup, campari, absolut de frutos rojos', price: '$9.000' }
+        ]}
+      ]
+    },
+    vinos: {
+      label: 'Vinos',
+      type: 'vinos',
+      sections: [
+        { title: 'Malbec', items: [
+          { name: 'Yacochuya', desc: 'Salta', price: '$93.800' },
+          { name: 'El Enemigo', price: '$42.000' },
+          { name: 'Fin del Mundo Single Vineyard', desc: 'Patagonia', price: '$54.400' },
+          { name: 'Saint Felicien', desc: 'Mendoza', price: '$23.000' },
+          { name: 'Huentala Zonos', price: '$39.100' },
+          { name: 'Trumpeter Reserva', desc: 'Mendoza', price: '$21.600' },
+          { name: 'Mariflor', desc: 'Mendoza', price: '$32.500' },
+          { name: 'Huentala Gran Sombrero', price: '$29.400' },
+          { name: 'Numina', desc: 'Mendoza', price: '$28.100' },
+          { name: 'Nicasia', price: '$20.900' },
+          { name: 'Colección 1310', price: '$21.700' },
+          { name: 'Piattelli Reserva', desc: 'Cafayate', price: '$22.300' },
+          { name: 'Indomable Blend de Malbecs', desc: 'Mendoza', price: '$20.600' },
+          { name: 'Trumpeter', desc: 'Mendoza', price: '$19.100' },
+          { name: 'Salentein Reserva', price: '$18.900' },
+          { name: 'Finca Ferrer', price: '$17.600' },
+          { name: 'Coquena', desc: 'Salta', price: '$15.300' },
+          { name: 'Domaine Bousquet Reserva Gualtallary', price: '$29.400' },
+          { name: 'Huentala Sombrero', price: '$17.300' },
+          { name: 'Fin del Mundo Malbec', desc: 'Patagonia', price: '$20.000' },
+          { name: 'La Celia Reserva', price: '$19.900' },
+          { name: 'Kilkka', price: '$13.000' },
+          { name: 'Acordeon', price: '$10.600' }
+        ]},
+        { title: 'Cabernet Sauvignon', items: [
+          { name: 'D.V Catena', desc: 'Mendoza', price: '$70.800' },
+          { name: 'Trumpeter Reserva', desc: 'Mendoza', price: '$21.600' },
+          { name: 'Trumpeter', desc: 'Mendoza', price: '$19.100' },
+          { name: 'Domaine Bousquet Reserva Gualtallary', price: '$29.400' }
+        ]},
+        { title: 'Cabernet Franc', items: [
+          { name: 'Gran Enemigo Gualtallary', price: '$89.000' },
+          { name: 'Huentala Sombrero', desc: 'Valle de Uco', price: '$17.300' },
+          { name: 'Nicasia', price: '$20.900' },
+          { name: 'Finca Ferrer', price: '$17.600' }
+        ]},
+        { title: 'Syrah', items: [
+          { name: 'Numina', price: '$28.100' }
+        ]},
+        { title: 'Pinot Noir', items: [
+          { name: 'Fin del Mundo Reserva', price: '$20.000' }
+        ]},
+        { title: 'Blends', items: [
+          { name: 'Piattelli Trinita', desc: 'Mendoza', price: '$57.700' },
+          { name: 'Dos Cumbres', price: '$24.300' }
+        ]},
+        { title: 'Bivarietales', items: [
+          { name: 'Rutini Cabernet Malbec', price: '$27.200' },
+          { name: 'D.V Catena Cabernet Malbec', price: '$24.400' },
+          { name: 'Clos de los Siete — Michel Rolland', price: '$24.400' },
+          { name: 'Fin del Mundo Gran Reserva Corte', price: '$25.100' }
+        ]},
+        { title: 'Cosecha Tardía', items: [
+          { name: 'Piattelli Sweet', price: '$20.800' },
+          { name: 'Norton', price: '$10.900' }
+        ]},
+        { title: 'Chardonnay', items: [
+          { name: 'Rutini', price: '$30.800' },
+          { name: 'Colección 1310', price: '$20.900' },
+          { name: 'Trumpeter', price: '$19.200' }
+        ]},
+        { title: 'Sauvignon Blanc', items: [
+          { name: 'Rutini', desc: 'Mendoza', price: '$26.900' },
+          { name: 'Trumpeter', desc: 'Mendoza', price: '$17.500' }
+        ]},
+        { title: 'Rosado', items: [
+          { name: 'Piattelli Reserva', price: '$20.700' },
+          { name: 'Acordeon', price: '$10.600' }
+        ]},
+        { title: 'Viognier', items: [
+          { name: 'Nicasia', desc: 'Mendoza', price: '$20.900' }
+        ]},
+        { title: 'Espumantes', items: [
+          { name: 'Baron B Extra Brut', price: '$38.900' },
+          { name: 'Salentein Brut Nature', price: '$20.600' },
+          { name: 'Domaine Bousquet Brut', price: '$25.400' }
+        ]}
+      ],
+      copa: [
+        { name: 'D.V Catena Cabernet Malbec', price: '$9.300' },
+        { name: 'D.V Catena Cabernet Cabernet', price: '$21.000' },
+        { name: 'Nicasia Cabernet Franc', price: '$7.100' },
+        { name: 'Nicasia Malbec', price: '$7.100' },
+        { name: 'Dos Cumbres', price: '$10.100' },
+        { name: 'La Posta Malbec', price: '$6.500' },
+        { name: 'La Posta White Blend', price: '$6.500' },
+        { name: 'Acordeon Rosé', price: '$6.500' },
+        { name: 'La Celia Reserva Malbec', price: '$6.100' },
+        { name: 'Espumante Salentein Brut Nature', price: '$7.100' }
+      ]
+    }
+  };
+
+  /* ============================================================
+     MENU SIN TACC — DATA
+  ============================================================ */
+  const MENU_TACC = {
+    entradas_t: {
+      label: 'Entradas',
+      type: 'cards',
+      items: [
+        { name: 'Burratina', desc: 'Jamón crudo, rúcula, palta, cherrys confitados y parmesano en escamas / mix de verdes, palta, cherrys confitados y semillas con almendras tostadas', price: '$24.300' },
+        { name: 'Portobellos Gratinados', desc: '4 quesos: azul, muzzarella, reggianito y parmesano', price: '$18.600' }
+      ]
+    },
+    ensaladas_t: {
+      label: 'Ensaladas',
+      type: 'cards',
+      items: [
+        { name: 'Salmon Gravlax', desc: 'Mix de verdes, flor de salmón ahumado, mozzarella y cherrys', price: '$23.100' },
+        { name: 'Caesar de Pollo', desc: 'Lechuga, pollo, aderezo caesar, anchoa, parmesano', price: '$19.600' },
+        { name: 'Consentida', desc: 'Burratina, mix de verdes, palta, cherrys confitados y semillas con almendras', price: '$22.700' }
+      ]
+    },
+    pastas_t: {
+      label: 'Pastas',
+      type: 'cards',
+      items: [
+        { name: 'Ravioles de Verdura y Ricota', desc: 'Con estofado de ternera', price: '$24.900' },
+        { name: 'Raviolones de Jamón y Queso Parisiene', desc: 'Champiñones, pollo, jamón cocido y crema', price: '$26.000' },
+        { name: 'Ravioles de Calabaza', desc: 'Gratinados con queso ahumado', price: '$25.500' },
+        { name: 'Gnocchis de Batata', desc: 'Crema, hongos de pino y champiñones', price: '$24.800' },
+        { name: 'Spaghettis Scarparo', desc: 'Ajo, crema, verdeo, tomates secos, cherrys, fileto y pesto', price: '$24.600' }
+      ]
+    },
+    risottos_t: {
+      label: 'Risottos y Arroz',
+      type: 'cards',
+      items: [
+        { name: 'Risotto Ossobuco', desc: 'Risotto milanés, cebolla, ajo, verdeo, morrones, arroz azafranado, ossobuco al pomodoro, sardo y manteca', price: '$28.600' },
+        { name: 'Risotto de Hongos y Queso Azul', desc: 'Cebolla, verdeo, champiñones, hongos de pino, queso azul, sardo y manteca', price: '$28.600' },
+        { name: 'Risotto Corazón de Alcaucil Gratinado', desc: 'Cebolla, verdeo, tomates cherry, sardo y manteca', price: '$28.600' },
+        { name: 'Risotto de Mariscos', desc: 'Arroz azafranado con cebolla, morrones, verdeo y frutos de mar', price: '$31.600' }
+      ]
+    },
+    pescados_t: {
+      label: 'Pescados',
+      type: 'cards',
+      items: [
+        { name: 'Pesca del Día', desc: 'Rotolo de merluza con timbal tricolor', price: '$30.300' },
+        { name: 'Salmón Grillado', desc: 'Acompañado de vegetales en teriyaki', price: '$40.800' }
+      ]
+    },
+    carnes_t: {
+      label: 'Carnes',
+      type: 'cards',
+      items: [
+        { name: 'Ojo de Bife (450gr)', desc: 'Manteca de hierbas, puré rústico o ensalada', price: '$41.400' },
+        { name: 'Lomo Cuatro Quesos', desc: 'Sardo, reggianito, azul, muzzarella y crema, puré rústico con hongos y verdeo', price: '$39.400' },
+        { name: 'Bondiola Laqueada con Mostaza y Miel', desc: 'Puré rústico o ensalada', price: '$36.900' },
+        { name: 'Pamplona de Pollo', desc: 'Puré rústico o ensalada', price: '$37.100' },
+        { name: 'Entraña Rellena', desc: 'Provolone y panceta, puré rústico o ensalada', price: '$44.100' }
+      ]
+    },
+    postres_t: {
+      label: 'Postres',
+      type: 'cards',
+      items: [
+        { name: 'Flan para 2', price: '$9.300' },
+        { name: 'Crème Brûlée', price: '$9.000' }
+      ]
+    },
+    cafeteria_t: {
+      label: 'Cafetería',
+      type: 'cafeteria',
+      sections: [
+        { title: 'Bebidas Calientes', items: [
+          { name: 'Café', price: '$3.200' },
+          { name: 'Café Cortado', price: '$3.400' },
+          { name: 'Café con Crema', price: '$3.500' },
+          { name: 'Jarrito Americano', price: '$3.500' },
+          { name: 'Jarrito con Leche', price: '$3.900' },
+          { name: 'Jarrito con Crema', price: '$4.000' },
+          { name: 'Café Doble', price: '$4.200' },
+          { name: 'Café Doble con Leche', price: '$4.600' },
+          { name: 'Café Doble con Crema', price: '$4.800' },
+          { name: 'Tazón de Café con Leche', price: '$7.500' },
+          { name: 'Cappuccino', price: '$5.500' },
+          { name: 'Submarino', price: '$5.100' },
+          { name: 'Chocolatada', price: '$5.000' },
+          { name: 'Vaso de Leche', price: '$4.500' },
+          { name: 'Té Intizen Clásico', price: '$3.800' },
+          { name: 'Té con Leche', price: '$4.000' },
+          { name: 'Tés Especiales', price: '$4.200' }
+        ]},
+        { title: 'Dulce', items: [
+          { name: 'Brownie', price: '$9.400' },
+          { name: 'Carrot Cake', price: '$9.400' },
+          { name: 'Flan con Dulce de Leche', price: '$9.400' },
+          { name: 'Lemonie', price: '$9.400' },
+          { name: 'Tostadas con queso crema y mermelada de frutos rojos o dulce de leche', price: '$9.400' }
+        ]},
+        { title: 'Salado', items: [
+          { name: 'Tostado Pan de Molde Jamón y Queso', price: '$8.300' },
+          { name: 'Tostado Pan de Molde Jamón Crudo y Queso', price: '$10.000' },
+          { name: 'Tostón con Huevo Revuelto (+tomate $500, palta $2.700, queso $600, panceta $500)', price: '$9.400' },
+          { name: 'Tostón de Jamón Crudo, Rúcula y Palta (+queso crema $600, tomate $300)', price: '$12.100' }
+        ]}
+      ]
+    },
+    bebidas_t: {
+      label: 'Bebidas',
+      type: 'bebidas',
+      sections: [
+        { title: 'Sin Alcohol', style: 'cafe', items: [
+          { name: 'Gaseosa', price: '$3.600' },
+          { name: 'Agua Saborizada', price: '$3.600' },
+          { name: 'Agua sin Gas', price: '$3.600' },
+          { name: 'Agua con Gas', price: '$3.600' },
+          { name: 'Limonada 500cc', price: '$6.200' },
+          { name: 'Limonada 1Lt', price: '$10.600' },
+          { name: 'Jugo de Naranja', price: '$6.900' }
+        ]},
+        { title: 'Licuados y Milk Shake', style: 'cafe', items: [
+          { name: 'Licuado (Banana / Durazno / Ananá / Frutilla / Frutos Rojos)', price: '$7.700' },
+          { name: 'Milk Shake (Chocolate / Frutilla / Dulce de Leche)', price: '$10.300' }
+        ]}
+      ]
+    }
+  };
+
+  /* ============================================================
+     RENDERERS
+  ============================================================ */
+  const card = i => `
+    <div class="menu-card">
+      <h4 class="card-name">${i.name}</h4>
+      ${i.desc ? `<p class="card-desc">${i.desc}</p>` : ''}
+      <span class="card-price${!i.price ? ' ask' : ''}">${i.price || 'A consultar'}</span>
+    </div>`;
+
+  const wineRow = i => `
+    <div class="wine-row">
+      <span class="wine-name">${i.name}${i.desc ? ` <small style="color:#aaa;font-family:var(--ff-body);font-size:.75rem">(${i.desc})</small>` : ''}</span>
+      <span class="wine-price">${i.price}</span>
+    </div>`;
+
+  const cockCard = i => `
+    <div class="cock-card">
+      <div>
+        <div class="cock-name">${i.name}</div>
+        ${i.desc ? `<div class="cock-desc">${i.desc}</div>` : ''}
+      </div>
+      <span class="cock-price">${i.price}</span>
+    </div>`;
+
+  const cafeRow = i => `
+    <div class="cafe-row">
+      <span class="cafe-name">${i.name}</span>
+      <span class="cafe-price">${i.price}</span>
+    </div>`;
+
+  function renderPanel(key, data) {
+    let h = '';
+    if (data.type === 'sugerencias') {
+      h += `<div style="text-align:center;margin-bottom:2rem">
+        <span class="sug-badge">Disponibles todos los días · Precios a consultar con el mozo</span></div>`;
+      data.sections.forEach(s => {
+        h += `<h3 class="sub-head">${s.title}</h3>
+          <div class="cards-grid" style="margin-bottom:2rem">${s.items.map(card).join('')}</div>`;
+      });
+    } else if (data.type === 'cards') {
+      if (data.note) h += `<p class="ham-note">${data.note}</p>`;
+      h += `<div class="cards-grid">${data.items.map(card).join('')}</div>`;
+    } else if (data.type === 'carnes') {
+      h += `<div class="cards-grid">
+        ${data.items.map(card).join('')}
+        <div class="adicionales">
+          <h4>Adicionales para milanesas</h4>
+          <p>${data.adicionales}</p>
+        </div></div>`;
+    } else if (data.type === 'postres') {
+      h += `<div class="cards-grid">${data.items.map(card).join('')}</div>
+        <div class="kids-wrap">
+          <div class="kids-card">
+            <h3>Menú Kids</h3>
+            <p>Consultar opciones con el mozo.<br>También disponible sin TACC.</p>
+            <div class="kprice">$20.200</div>
+            <p style="font-size:.78rem;margin-top:.5rem;opacity:.7">Cubierto $2.100 · Menores de 12 años sin cargo</p>
+          </div></div>`;
+    } else if (data.type === 'cafeteria') {
+      data.sections.forEach(s => {
+        h += `<h3 class="sub-head">${s.title}</h3>
+          <div class="cafe-grid" style="margin-bottom:2rem">${s.items.map(cafeRow).join('')}</div>`;
+      });
+      h += `<p style="font-size:.8rem;color:#999;margin-top:1rem;font-style:italic">* Los tostados admiten extras: tomate +$500 · huevo +$600 · palta +$2.700 · queso crema +$700 · panceta +$800</p>`;
+    } else if (data.type === 'bebidas') {
+      data.sections.forEach(s => {
+        h += `<h3 class="sub-head">${s.title}</h3>`;
+        h += s.style === 'cocktail'
+          ? `<div class="cock-grid" style="margin-bottom:2rem">${s.items.map(cockCard).join('')}</div>`
+          : `<div class="cafe-grid" style="margin-bottom:2rem">${s.items.map(cafeRow).join('')}</div>`;
+      });
+    } else if (data.type === 'vinos') {
+      h += `<div class="wine-sections">`;
+      data.sections.forEach(s => {
+        h += `<div><h3 class="sub-head">${s.title}</h3>
+          <div class="wine-grid">${s.items.map(wineRow).join('')}</div></div>`;
+      });
+      h += `</div>`;
+      if (data.copa) {
+        h += `<div style="margin-top:3rem">
+          <h3 class="sub-head">Vinos por Copa</h3>
+          <span class="copa-badge">Sistema Newine · Vino siempre fresco, copa a copa</span>
+          <div class="wine-grid">${data.copa.map(wineRow).join('')}</div>
+        </div>`;
+      }
+    }
+    return h;
+  }
+
+  /* ============================================================
+     INIT MENU
+  ============================================================ */
+  function initMenu() {
+    const bar = document.getElementById('tabsBar');
+    const panels = document.getElementById('tabPanels');
+    Object.keys(MENU).forEach((key, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'tab-btn' + (i === 0 ? ' active' : '');
+      btn.setAttribute('role', 'tab');
+      btn.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+      btn.setAttribute('data-tab', key);
+      btn.textContent = MENU[key].label;
+      // Insertar quiebre de fila antes de Hamburguesas
+      if (key === 'hamburguesas') {
+        const br = document.createElement('div');
+        br.style.cssText = 'flex-basis:100%; height:0;';
+        bar.appendChild(br);
+      }
+      bar.appendChild(btn);
+
+      const panel = document.createElement('div');
+      panel.className = 'tab-panel' + (i === 0 ? ' active' : '');
+      panel.id = 'panel-' + key;
+      panel.setAttribute('role', 'tabpanel');
+      panel.innerHTML = renderPanel(key, MENU[key]);
+      panels.appendChild(panel);
+    });
+
+    bar.addEventListener('click', e => {
+      const btn = e.target.closest('.tab-btn');
+      if (!btn) return;
+      const tab = btn.dataset.tab;
+      bar.querySelectorAll('.tab-btn').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      panels.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      document.getElementById('panel-' + tab).classList.add('active');
+      btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    });
+  }
+
+  /* ============================================================
+     INIT MENU SIN TACC
+  ============================================================ */
+  function initMenuTacc() {
+    const bar = document.getElementById('taccTabsBar');
+    const panels = document.getElementById('taccPanels');
+    if (!bar || !panels) return;
+    Object.keys(MENU_TACC).forEach((key, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'tab-btn' + (i === 0 ? ' active' : '');
+      btn.setAttribute('role', 'tab');
+      btn.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+      btn.setAttribute('data-tacc', key);
+      btn.textContent = MENU_TACC[key].label;
+      bar.appendChild(btn);
+
+      const panel = document.createElement('div');
+      panel.className = 'tab-panel' + (i === 0 ? ' active' : '');
+      panel.id = 'tpanel-' + key;
+      panel.setAttribute('role', 'tabpanel');
+      panel.innerHTML = renderPanel(key, MENU_TACC[key]);
+      panels.appendChild(panel);
+    });
+
+    bar.addEventListener('click', e => {
+      const btn = e.target.closest('.tab-btn');
+      if (!btn) return;
+      const tab = btn.dataset.tacc;
+      bar.querySelectorAll('.tab-btn').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      panels.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      document.getElementById('tpanel-' + tab).classList.add('active');
+    });
+  }
+
+  initMenuTacc();
+
+  /* navbar estático — sin scroll listener */
+
+  /* ============================================================
+     MOBILE MENU
+  ============================================================ */
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    const open = hamburger.classList.toggle('active');
+    mobileMenu.classList.toggle('active', open);
+    hamburger.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  function closeMob() {
+    hamburger.classList.remove('active');
+    mobileMenu.classList.remove('active');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  /* ============================================================
+     HERO ANIMATION
+  ============================================================ */
+  window.addEventListener('load', () => {
+    ['heroLogo','heroSub','heroCta','heroNote'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.classList.add('loaded');
+    });
+  });
+
+  /* ============================================================
+     SCROLL FADE-UP
+  ============================================================ */
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  /* ============================================================
+     GALLERY LIGHTBOX
+  ============================================================ */
+  const lightbox = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  const lbClose = document.getElementById('lbClose');
+  const lbPrev = document.getElementById('lbPrev');
+  const lbNext = document.getElementById('lbNext');
+  const gItems = Array.from(document.querySelectorAll('.g-item[data-img]'));
+  let lbIdx = 0;
+
+  function openLb(idx) {
+    lbIdx = idx;
+    lbImg.src = gItems[idx].dataset.img;
+    lbImg.alt = gItems[idx].querySelector('img')?.alt || '';
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLb() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  gItems.forEach((item, i) => {
+    item.addEventListener('click', () => openLb(i));
+    item.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') openLb(i); });
+  });
+  lbClose.addEventListener('click', closeLb);
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLb(); });
+  lbPrev.addEventListener('click', () => openLb((lbIdx - 1 + gItems.length) % gItems.length));
+  lbNext.addEventListener('click', () => openLb((lbIdx + 1) % gItems.length));
+  document.addEventListener('keydown', e => {
+    if (!lightbox.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLb();
+    if (e.key === 'ArrowLeft') lbPrev.click();
+    if (e.key === 'ArrowRight') lbNext.click();
+  });
+
+  /* hero estático — sin parallax */
+
+  /* ============================================================
+     BOOT
+  ============================================================ */
+  initMenu();
+  </script>
+</body>
+</html>
