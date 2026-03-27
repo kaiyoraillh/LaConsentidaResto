@@ -30,7 +30,7 @@
 
     /* ===== RESET ===== */
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-    html { scroll-behavior:smooth; font-size:16px; }
+    html { font-size:16px; }
     body { font-family:var(--ff-body); color:var(--dark); background:var(--cream); overflow-x:hidden; }
     img { max-width:100%; height:auto; display:block; }
     a { text-decoration:none; color:inherit; }
@@ -1455,6 +1455,21 @@
   }
 
   initMenuTacc();
+
+  /* smooth scroll con offset navbar */
+  document.querySelectorAll("a[href^=\"#\"]").forEach(anchor => {
+    anchor.addEventListener("click", function(e) {
+      const href = this.getAttribute("href");
+      if (href === "#") return;
+      const target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        const navbarHeight = document.getElementById("navbar").offsetHeight;
+        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+        window.scrollTo({ top: targetPosition, behavior: "smooth" });
+      }
+    });
+  });
 
   /* navbar scroll */
   const navEl = document.getElementById('navbar');
