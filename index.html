@@ -44,8 +44,17 @@
       background:var(--white);
       box-shadow:0 1px 8px rgba(0,0,0,0.04);
       border-bottom:1px solid var(--gold);
+      transition:padding 0.4s ease, box-shadow 0.4s ease;
     }
-    .navbar-logo img { height:70px; width:auto; object-fit:contain; display:block; }
+    .navbar.scrolled {
+      padding:6px 2.5rem;
+      box-shadow:0 4px 20px rgba(0,0,0,0.12);
+    }
+    .navbar-logo img {
+      height:70px; width:auto; object-fit:contain; display:block;
+      transition:height 0.4s ease;
+    }
+    .navbar.scrolled .navbar-logo img { height:60px; }
 
     .navbar-nav { display:flex; align-items:center; gap:0; list-style:none; }
     .navbar-nav li { display:flex; align-items:center; }
@@ -646,7 +655,7 @@
   <!-- NAVBAR -->
   <nav class="navbar" id="navbar" role="navigation" aria-label="Navegación principal">
     <a href="#inicio" class="navbar-logo" aria-label="La Consentida — Inicio">
-      <img src="assets/LA%20CONSENTIDA%20IMAGENES/LOGO%20LA%20CONSENTIDA.jpg" alt="La Consentida" style="height:70px;width:auto;display:block;">
+      <img src="assets/LA%20CONSENTIDA%20IMAGENES/LOGO_LA_CONSENTIDA_HD.png" alt="La Consentida" style="height:70px;width:auto;display:block;">
     </a>
     <ul class="navbar-nav" role="list">
       <li><a href="#inicio">Inicio</a></li>
@@ -1447,7 +1456,11 @@
 
   initMenuTacc();
 
-  /* navbar estático — sin scroll listener */
+  /* navbar scroll */
+  const navEl = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navEl.classList.toggle('scrolled', window.scrollY > 50);
+  }, { passive: true });
 
   /* ============================================================
      MOBILE MENU
