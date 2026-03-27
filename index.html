@@ -191,7 +191,7 @@
     }
 
     /* ===== GENERAL ===== */
-    section { padding:7rem 2rem; }
+    section { padding:5rem 2rem; }
     .container { max-width:1200px; margin:0 auto; }
     .sec-label {
       font-size:0.68rem; font-weight:700; letter-spacing:0.38em;
@@ -202,23 +202,86 @@
       font-weight:400; line-height:1.2; letter-spacing:0.04em; margin-bottom:1.4rem;
     }
     .sec-div {
-      width:56px; height:1.5px; background:var(--gold); margin-bottom:2.5rem;
-      margin-left:auto; margin-right:auto;
-      position:relative;
+      position:relative; width:110px; height:8px;
+      display:flex; align-items:center; justify-content:center;
+      margin:0 auto 2.5rem;
+    }
+    .sec-div::before {
+      content:''; position:absolute; top:50%; left:0; right:0;
+      height:1.5px; background:var(--gold); transform:translateY(-50%);
+      transform-origin:center;
+      transition: scaleX 0.7s ease 0.2s;
     }
     .sec-div::after {
-      content:''; position:absolute; top:50%; left:calc(100% + 6px);
-      transform:translateY(-50%);
+      content:''; position:relative; z-index:1;
       width:6px; height:6px; background:var(--gold); border-radius:50%;
+      flex-shrink:0;
     }
 
+    /* Fade-up scroll */
     .fade-up {
-      opacity:0; transform:translateY(32px);
-      transition:opacity 0.75s ease, transform 0.75s ease;
+      opacity:0; transform:translateY(28px);
+      transition:opacity 0.7s ease, transform 0.7s ease;
     }
     .fade-up.visible { opacity:1; transform:translateY(0); }
     .d1{transition-delay:.1s} .d2{transition-delay:.2s}
     .d3{transition-delay:.3s} .d4{transition-delay:.4s}
+
+    /* Navbar slide-in */
+    .navbar {
+      animation: navSlideIn 0.6s ease-out both;
+    }
+    @keyframes navSlideIn {
+      from { transform:translateY(-100%); opacity:0; }
+      to   { transform:translateY(0);    opacity:1; }
+    }
+    .navbar-nav li { opacity:0; animation: navLinkIn 0.4s ease-out forwards; }
+    .navbar-nav li:nth-child(1) { animation-delay: 0.5s; }
+    .navbar-nav li:nth-child(2) { animation-delay: 0.6s; }
+    .navbar-nav li:nth-child(3) { animation-delay: 0.7s; }
+    @keyframes navLinkIn {
+      from { opacity:0; transform:translateY(-6px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    /* Navbar link hover dot */
+    .navbar-nav a::before {
+      content:''; position:absolute; bottom:-5px; left:50%;
+      transform:translateX(-50%) scale(0);
+      width:4px; height:4px; background:var(--gold); border-radius:50%;
+      transition:transform 0.25s ease;
+    }
+    .navbar-nav a:hover::before { transform:translateX(-50%) scale(1); }
+
+    /* Sec-div line animation */
+    .sec-div::before {
+      transform: translateY(-50%) scaleX(0);
+      transition: transform 0.7s ease 0.2s;
+    }
+    .sec-div.visible::before { transform: translateY(-50%) scaleX(1); }
+
+    /* Gallery item stagger */
+    .g-item {
+      opacity:0; transform:translateY(20px);
+      transition:opacity 0.6s ease, transform 0.6s ease;
+    }
+    .g-item.visible { opacity:1; transform:translateY(0); }
+
+    /* Card stagger via JS inline delay */
+    .menu-card {
+      transition:transform 0.35s ease, box-shadow 0.35s ease, opacity 0.5s ease, translate 0.5s ease;
+    }
+    .menu-card.card-hidden { opacity:0; translate:0 20px; }
+    .menu-card.card-visible { opacity:1; translate:0 0; }
+
+    /* prefers-reduced-motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration:0.01ms !important;
+        animation-iteration-count:1 !important;
+        transition-duration:0.01ms !important;
+      }
+    }
 
     /* ===== NOSOTROS ===== */
     .nosotros { background:var(--white); }
@@ -451,7 +514,6 @@
     }
     .contact-sec .sec-label { color:var(--gold); }
     .contact-sec .sec-title { color:var(--white); }
-    .contact-sec .sec-div { background:var(--gold); }
     .contact-inner { max-width:1100px; margin:0 auto; }
     .contact-cols {
       display:grid; grid-template-columns:1fr 1fr;
@@ -477,6 +539,13 @@
       font-size:0.9rem; line-height:1.65;
       color:rgba(255,255,255,0.85); margin:0;
     }
+    .addr-link {
+      color:rgba(255,255,255,0.85); text-decoration:none;
+      display:inline-flex; align-items:center; gap:0.3rem;
+      transition:color 0.25s;
+    }
+    .addr-link::before { display:none; }
+    .addr-link:hover { color:var(--gold); }
     .contact-map-wrap {
       border-radius:10px; overflow:hidden;
       border:1.5px solid rgba(201,168,76,0.4);
@@ -492,7 +561,7 @@
     }
     .btn-insta {
       display:inline-flex; align-items:center; gap:0.55rem;
-      padding:0.75rem 1.6rem; border:1.5px solid rgba(255,255,255,0.75);
+      padding:1rem 2.2rem; border:1.5px solid rgba(255,255,255,0.75);
       border-radius:3px; font-size:0.75rem; font-weight:700;
       letter-spacing:0.12em; text-transform:uppercase; color:var(--white);
       transition:var(--tr);
@@ -501,7 +570,7 @@
     .btn-insta svg { width:16px; height:16px; }
     .btn-wa-contact {
       display:inline-flex; align-items:center; gap:0.55rem;
-      padding:0.75rem 1.6rem; background:var(--gold); border:1.5px solid var(--gold);
+      padding:1rem 2.2rem; background:var(--gold); border:1.5px solid var(--gold);
       border-radius:3px; font-size:0.75rem; font-weight:700;
       letter-spacing:0.12em; text-transform:uppercase; color:#1A1A1A;
       transition:var(--tr);
@@ -717,7 +786,11 @@
           <div class="c-card fade-up">
             <svg class="c-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
             <h4>Dirección</h4>
-            <p>Mendoza 1624, Ingeniero Maschwitz<br>Buenos Aires, Argentina</p>
+            <p>
+              <a href="https://maps.app.goo.gl/1teiM5nwW9qKZwzAA" target="_blank" rel="noopener noreferrer" class="addr-link">
+                Mendoza 1624, Ingeniero Maschwitz
+              </a><br>Buenos Aires, Argentina
+            </p>
           </div>
           <div class="c-card fade-up d1">
             <svg class="c-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
@@ -733,11 +806,10 @@
         <!-- Mapa derecha -->
         <div class="contact-map-wrap fade-up d1">
           <iframe
-            src="https://www.google.com/maps?q=Mendoza+1624,+Ingeniero+Maschwitz,+Buenos+Aires,+Argentina&output=embed"
-            title="Ubicación de La Consentida en Google Maps"
-            style="border:0" scrolling="no"
-            allowfullscreen loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade">
+            src="https://maps.google.com/maps?q=Mendoza+1624,+Ingeniero+Maschwitz,+Buenos+Aires,+Argentina&t=&z=16&ie=UTF8&iwloc=&output=embed"
+            width="100%" height="100%"
+            style="border:0;" allowfullscreen=""
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade">
           </iframe>
         </div>
       </div>
@@ -1180,8 +1252,8 @@
         { title: 'Salado', items: [
           { name: 'Tostado Pan de Molde Jamón y Queso', price: '$8.300' },
           { name: 'Tostado Pan de Molde Jamón Crudo y Queso', price: '$10.000' },
-          { name: 'Tostón con Huevo Revuelto (+tomate $500, palta $2.700, queso $600, panceta $500)', price: '$9.400' },
-          { name: 'Tostón de Jamón Crudo, Rúcula y Palta (+queso crema $600, tomate $300)', price: '$12.100' }
+          { name: 'Tostón con Huevo Revuelto', price: '$9.400' },
+          { name: 'Tostón de Jamón Crudo, Rúcula y Palta', price: '$12.100' }
         ]}
       ]
     },
@@ -1257,14 +1329,7 @@
           <p>${data.adicionales}</p>
         </div></div>`;
     } else if (data.type === 'postres') {
-      h += `<div class="cards-grid">${data.items.map(card).join('')}</div>
-        <div class="kids-wrap">
-          <div class="kids-card">
-            <h3>Menú Kids</h3>
-            <p>Consultar opciones con el mozo.<br>También disponible sin TACC.</p>
-            <div class="kprice">$20.200</div>
-            <p style="font-size:.78rem;margin-top:.5rem;opacity:.7">Cubierto $2.100 · Menores de 12 años sin cargo</p>
-          </div></div>`;
+      h += `<div class="cards-grid">${data.items.map(card).join('')}</div>`;
     } else if (data.type === 'cafeteria') {
       data.sections.forEach(s => {
         h += `<h3 class="sub-head">${s.title}</h3>
@@ -1424,6 +1489,46 @@
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  /* sec-div line animation */
+  const divObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        divObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.sec-div').forEach(el => divObs.observe(el));
+
+  /* gallery items stagger */
+  const gObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        gObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.g-item').forEach((el, i) => {
+    el.style.transitionDelay = (i * 0.08) + 's';
+    gObs.observe(el);
+  });
+
+  /* menu cards stagger */
+  const cardObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const cards = e.target.querySelectorAll('.menu-card');
+        cards.forEach((c, i) => {
+          c.classList.add('card-hidden');
+          setTimeout(() => c.classList.replace('card-hidden','card-visible'), i * 50);
+        });
+        cardObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.05 });
+  document.querySelectorAll('.tab-panel').forEach(p => cardObs.observe(p));
 
   /* ============================================================
      GALLERY LIGHTBOX
